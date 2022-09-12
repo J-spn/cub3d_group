@@ -1,2 +1,2 @@
-# cub3d_group_project
+# cub3d_group
 group graphic project in c
