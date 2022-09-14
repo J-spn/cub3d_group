@@ -1,6 +1,7 @@
 .DS_Store
 
 libft/libft.a
+mlx/libmlx.a
 objs/
 cub3d
 a.out
