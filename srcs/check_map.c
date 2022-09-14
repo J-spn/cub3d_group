@@ -1,7 +1,14 @@
 
 #include "cub3d.h"
 
-static int	ft_check_eachchar(char **map)
+static void	ft_set_player_pos(t_map *map, int x, int y, int *p)
+{
+	map->player_x = x;
+	map->player_y = y;
+	*p += 1;
+}
+
+static int	ft_check_eachchar(t_map *map, char **map_game)
 {
 	int	x;
 	int	y;
@@ -11,16 +18,16 @@ static int	ft_check_eachchar(char **map)
 	y = -1;
 	ground = 0;
 	player = 0;
-	while (map[++y])
+	while (map_game[++y])
 	{
 		x = 0;
-		while (map[y][x] != '\0' && map[y][x] != '\n')
+		while (map_game[y][x] != '\0' && map_game[y][x] != '\n')
 		{
-			if (map[y][x] == '0' || map[y][x] == '1')
+			if (map_game[y][x] == '0' || map_game[y][x] == '1')
 				ground++;
-			if (map[y][x] == 'N' || map[y][x] == 'S' || \
-				map[y][x] == 'W' || map[y][x] == 'E')
-				player++;
+			if (map_game[y][x] == 'N' || map_game[y][x] == 'S' || \
+				map_game[y][x] == 'W' || map_game[y][x] == 'E')
+					ft_set_player_pos(map, x, y, &player);
 			x++;
 		}
 	}
@@ -56,7 +63,7 @@ static int	ft_check_chars(char **map, const char *set)
 
 char	**ft_map_cpy(int height, char **map)
 {
-	int		x;
+	// int		x;
 	int		y;
 	char	**map_tmp;
 
@@ -67,17 +74,17 @@ char	**ft_map_cpy(int height, char **map)
 	while (map[++y])
 		map_tmp[y] = ft_strdup(map[y]);
 	map_tmp[y] = NULL;
-	y = -1;
-	while (map_tmp[++y])
-	{
-		x = 0;
-		while (map_tmp[y][x])
-		{
-			if (map_tmp[y][x] == ' ')
-				(map_tmp)[y][x] = '0';
-			x++;
-		}
-	}
+	// y = -1;
+	// while (map_tmp[++y])
+	// {
+	// 	x = 0;
+	// 	while (map_tmp[y][x])
+	// 	{
+	// 		if (map_tmp[y][x] == ' ')
+	// 			(map_tmp)[y][x] = '0';
+	// 		x++;
+	// 	}
+	// }
 	return (map_tmp);
 }
 
@@ -147,24 +154,22 @@ int	ft_check_walls(t_map *map, char **map_tmp)
 {
 	int		x;
 	int		y;
+	// int		out;
+	// int		inner;
 
 	x = 0;
-	y = (map->height / 2) - 1;
-	while (map_tmp[y][x] && map_tmp[y][x] == ' ')
-		x++;
-	while (map_tmp[y])
+	y = 0;
+	(void)map;
+	printf("player_x: %d\n", map->player_x);
+	printf("player_y: %d\n", map->player_y);
+	printf("%c", map_tmp[y][x]);
+	while (1)
 	{
-		printf("%s", map_tmp[y]);
-		while (map_tmp[y][x] && map_tmp[y][x] != '\n')
+		if (!ft_is_surrounded(map_tmp, y, x))
 		{
-			if (!ft_is_surrounded(map_tmp, y, x))
-			{
-				printf("not surrounded\n");
-				return (0);
-			}
-			x++;
+			printf("not surrounded\n");
+			return (0);
 		}
-		y++;
 	}
 	return (1);
 }
@@ -177,16 +182,16 @@ int	ft_check_map(t_map *map)
 	i = 0;
 	if (!ft_check_chars(map->game_map, "01NSWE "))
 		return (0);
-	if (!ft_check_eachchar(map->game_map))
+	if (!ft_check_eachchar(map, map->game_map))
 		return (0);
 	map_tmp = ft_map_cpy(map->height, map->game_map);
-	// ft_printf_split(map_tmp);
-	ft_printf_split(map->game_map);
-	if (!ft_check_walls(map, map->game_map))
-	{
-		ft_free_split(map_tmp);
-		return (0);
-	}
+	ft_printf_split(map_tmp);
+	// ft_printf_split(map->game_map);
+	// if (!ft_check_walls(map, map_tmp))
+	// {
+	// 	ft_free_split(map_tmp);
+	// 	return (0);
+	// }
 	ft_free_split(map_tmp);
 	return (1);
 }
