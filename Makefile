@@ -10,9 +10,17 @@ SRCS_MF = 	main.c errors.c mlx_init.c utils.c\
 OBJS_M = $(addprefix $(OBJS_DIR)/, $(patsubst %.c,%.o, $(SRCS_MF)))
 D_FILES_M = $(addprefix $(OBJS_DIR)/, $(patsubst %.c,%.d, $(SRCS_MF)))
 
-INCLUDES = -I./includes/ -I ./mlx -I libft/includes/
+detected_OS := $(shell uname)
 
-MLX = -Lmlx -lmlx -framework OpenGL -framework AppKit
+ifeq ($(detected_OS), Darwin)
+	INCLUDES = -I./includes/ -I ./mlx -I libft/includes/
+	MLX = -Lmlx -lmlx -framework OpenGL -framework AppKit
+	MLX_FOLDER = ./mlx
+else
+	INCLUDES = -I./includes/  -I./mlx_linux -I./libft/includes/
+	MLX = -Lmlx_linux -lmlx_Linux -lm -lz -lX11 -lXext
+	MLX_FOLDER = ./mlx_linux
+endif
 
 LIBFT = ./libft/libft.a
 LIB_INC = -L./libft/ -lft
