@@ -1,0 +1,7 @@
+.DS_Store
+
+objs/
+cub3d
+a.out
+.vscode
+*.dSYM
