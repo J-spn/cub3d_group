@@ -3,6 +3,7 @@
 
 #include "libft.h"
 #include "mlx.h"
+// #include "./temp_mlx_depended_on_os.h"
 #include <unistd.h>
 #include <stdlib.h>
 #include <fcntl.h>
@@ -30,7 +31,6 @@ typedef struct s_element {
 typedef struct s_map {
 	char	**game_map;
 	int		height;
-	int		width; //not in use
 	int		player_x;
 	int		player_y;
 	int		player_start_dir;
@@ -71,6 +71,7 @@ int		ft_check_identifiers(t_element *elem);
 
 /*parse_map.c*/
 int		ft_parse_map(t_data *data, char *line, int fd, char *file);
+char	**ft_map_cpy(int height, char **map);
 
 /*check_map.c*/
 int		ft_check_map(t_map *map);

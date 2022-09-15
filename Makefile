@@ -6,7 +6,7 @@ OBJS_DIR = objs
 SRCS_MF = 	main.c errors.c mlx_init.c utils.c\
 			parsing.c parse_identifiers.c parse_map.c\
 			check_map.c clear.c
-
+			
 OBJS_M = $(addprefix $(OBJS_DIR)/, $(patsubst %.c,%.o, $(SRCS_MF)))
 D_FILES_M = $(addprefix $(OBJS_DIR)/, $(patsubst %.c,%.d, $(SRCS_MF)))
 
@@ -17,7 +17,7 @@ ifeq ($(detected_OS), Darwin)
 	MLX = -Lmlx -lmlx -framework OpenGL -framework AppKit
 	MLX_FOLDER = ./mlx
 else
-	INCLUDES = -I./includes/  -I./mlx_linux -I./libft/includes/
+	INCLUDES = -I./includes/  -I ./mlx_linux -I./libft/includes/
 	MLX = -Lmlx_linux -lmlx_Linux -lm -lz -lX11 -lXext
 	MLX_FOLDER = ./mlx_linux
 endif
@@ -39,7 +39,7 @@ SANIT_FLAGS = cc -fsanitize=address $(CFLAGS)
 
 .PHONY : all lib clean fclean sanit_m re
 
-all : lib $(NAME)
+all : lib define_header $(NAME)
 
 $(OBJS_DIR) :
 	mkdir $@
@@ -47,8 +47,12 @@ $(OBJS_DIR) :
 lib :
 	make -C libft/
 
+define_header :
+	cp $(MLX_FOLDER)/mlx.h includes/
+	mv includes/mlx.h includes/temp_mlx_depended_on_os.h
+
 $(NAME) : $(OBJS_M) $(LIBFT)
-	make -C ./mlx
+	make -C $(MLX_FOLDER)
 	$(CC) $(CFLAGS) $(OPFLAGS) $(OBJS_M) $(LIB_INC) $(MLX) -o $(NAME)
 	@echo "$(BLUE)$(NAME)$(GREEN) --> DONE!$(BREAK)"
 
@@ -57,14 +61,15 @@ $(OBJS_DIR)/%.o : $(SRCS_DIR)/%.c | $(OBJS_DIR)
 
 clean :
 	make -C libft/ $@
-	make -C ./mlx $@
+	make -C $(MLX_FOLDER) $@
 	rm -rf $(OBJS_DIR)
 	@echo "$(BLUE)objs $(RED)--> DELETED$(BREAK)"
 
 fclean : clean
 	make -C libft/ $@
 	@echo "$(BLUE)libft.a $(RED)--> DELETED$(BREAK)"
-	rm -f $(NAME)
+	rm -f $(NAME) includes/temp_mlx_depended_on_os.h
+	touch includes/temp_mlx_depended_on_os.h
 	@echo "$(BLUE)$(NAME) $(RED)--> DELETED$(BREAK)"
 
 re : fclean all
