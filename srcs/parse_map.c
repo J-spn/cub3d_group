@@ -2,6 +2,21 @@
 
 #include "cub3d.h"
 
+char	**ft_map_cpy(int height, char **map)
+{
+	int		y;
+	char	**map_tmp;
+
+	map_tmp = (char **)malloc(sizeof(char *) * (height + 1));
+	if (map_tmp == NULL)
+		return (NULL);
+	y = -1;
+	while (map[++y])
+		map_tmp[y] = ft_strdup(map[y]);
+	map_tmp[y] = NULL;
+	return (map_tmp);
+}
+
 static int	ft_get_height(int fd)
 {
 	int		i;
@@ -64,7 +79,7 @@ int	ft_parse_map(t_data *data, char *line, int fd, char *file)
 	map = data->map;
 	map->height = ft_get_height(fd) + 1;
 	map->game_map = (char **)malloc(sizeof(char *) * (map->height + 1));
-	if (map->game_map == NULL || map->height <= 1)
+	if (map->game_map == NULL)
 		ft_free_exit_msg(data, "Error\nMalloc error\n");
 	map_fd = open(file, O_RDONLY);
 	if (map_fd < 0) 
