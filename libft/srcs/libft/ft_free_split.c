@@ -6,13 +6,13 @@
 /*   By: mrhyhorn <mrhyhorn@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 19:23:12 by mrhyhorn          #+#    #+#             */
-/*   Updated: 2022/09/15 14:53:05 by mrhyhorn         ###   ########.fr       */
+/*   Updated: 2022/09/15 20:07:50 by mrhyhorn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_free_split(char **split_string)
+int	ft_free_split(char **split_string)
 {
 	int	i;
 
@@ -25,7 +25,8 @@ void	ft_free_split(char **split_string)
 			i++;
 		}
 		ft_memdel(split_string);
+		return (0);
 	}
 	else
-		return ;
+		return (1);
 }

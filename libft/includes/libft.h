@@ -6,7 +6,7 @@
 /*   By: mrhyhorn <mrhyhorn@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 18:57:40 by mrhyhorn          #+#    #+#             */
-/*   Updated: 2022/09/12 13:32:06 by mrhyhorn         ###   ########.fr       */
+/*   Updated: 2022/09/15 20:08:42 by mrhyhorn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char		*ft_strjoin(char *s1, char const *s2);
 char		*ft_strtrim(char const *s1, char const *set);
 char		**ft_split(const char *s, char c);
 size_t		ft_splitlen(char **split);
-void		ft_free_split(char **split_string);
+int			ft_free_split(char **split_string);
 char		*ft_itoa(int n);
 char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void		ft_striteri(char *s, void (*f)(unsigned int, char*));
