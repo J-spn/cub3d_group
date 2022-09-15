@@ -3,7 +3,6 @@
 
 #include "libft.h"
 #include "mlx.h"
-// #include "./temp_mlx_depended_on_os.h"
 #include <unistd.h>
 #include <stdlib.h>
 #include <fcntl.h>

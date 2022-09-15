@@ -44,10 +44,10 @@ static char	*ft_get_info(t_data *data, int fd)
 void	ft_parse_file(t_data *data, char *file)
 {
 	int			fd;
-	t_element	*elem;
+//	t_element	*elem;
 	char		*line;
 
-	elem = data->elems;
+//	elem = data->elems;
 	if (!ft_check_ext(file))
 		ft_exit_error("Error\nInvalid map extension\n");
 	fd = open(file, O_RDONLY);

@@ -39,17 +39,13 @@ SANIT_FLAGS = cc -fsanitize=address $(CFLAGS)
 
 .PHONY : all lib clean fclean sanit_m re
 
-all : lib define_header $(NAME)
+all : lib $(NAME)
 
 $(OBJS_DIR) :
 	mkdir $@
 
 lib :
 	make -C libft/
-
-define_header :
-	cp $(MLX_FOLDER)/mlx.h includes/
-	mv includes/mlx.h includes/temp_mlx_depended_on_os.h
 
 $(NAME) : $(OBJS_M) $(LIBFT)
 	make -C $(MLX_FOLDER)
@@ -68,8 +64,7 @@ clean :
 fclean : clean
 	make -C libft/ $@
 	@echo "$(BLUE)libft.a $(RED)--> DELETED$(BREAK)"
-	rm -f $(NAME) includes/temp_mlx_depended_on_os.h
-	touch includes/temp_mlx_depended_on_os.h
+	rm -f $(NAME)
 	@echo "$(BLUE)$(NAME) $(RED)--> DELETED$(BREAK)"
 
 re : fclean all
