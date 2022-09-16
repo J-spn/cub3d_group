@@ -52,7 +52,7 @@ static int	ft_check_chars(char **map, const char *set)
 		while (map[y][x] != '\0' && map[y][x] != '\n')
 		{
 			if (ft_strchr(set, map[y][x]) == NULL)
-				return (0);
+				return (ft_memdel(trim));
 			x++;
 		}
 		ft_memdel(trim);
@@ -98,6 +98,7 @@ int	ft_check_map(t_map *map)
 		ft_free_split(map_tmp);
 		return (0);
 	}
+	// ft_printf_split(map_tmp);
 	ft_free_split(map_tmp);
 	return (1);
 }

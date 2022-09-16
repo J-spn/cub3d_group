@@ -44,10 +44,8 @@ static char	*ft_get_info(t_data *data, int fd)
 void	ft_parse_file(t_data *data, char *file)
 {
 	int			fd;
-//	t_element	*elem;
 	char		*line;
 
-//	elem = data->elems;
 	if (!ft_check_ext(file))
 		ft_exit_error("Error\nInvalid map extension\n");
 	fd = open(file, O_RDONLY);
@@ -57,7 +55,7 @@ void	ft_parse_file(t_data *data, char *file)
 	if (line == NULL || !ft_check_identifiers(data->elems))
 	{
 		close(fd);
-		ft_free_exit_msg(data, "Error\nInvalid file\n");
+		ft_free_exit_msg(data, "Error\nInvalid identifiers\n");
 	}
 	if (!ft_parse_map(data, line, fd, file))
 	{
@@ -65,12 +63,10 @@ void	ft_parse_file(t_data *data, char *file)
 		ft_free_exit_msg(data, "Error\nInvalid map\n");
 	}
 	close(fd);
-	// printf("NO: %s\n", elem->north_txtr);
-	// printf("SO: %s\n", elem->south_txtr);
-	// printf("WE: %s\n", elem->west_txtr);
-	// printf("EA: %s\n", elem->east_txtr);
-	// printf("F: %s\n", elem->floor_clr);
-	// printf("C: %s\n", elem->ceilling_clr);
-
-	//проверять все ли текстуры есть после назначения
+	// printf("NO: %s\n", data->elems->north_txtr);
+	// printf("SO: %s\n", data->elems->south_txtr);
+	// printf("WE: %s\n", data->elems->west_txtr);
+	// printf("EA: %s\n", data->elems->east_txtr);
+	// printf("F: %s\n", data->elems->floor_clr);
+	// printf("C: %s\n", data->elems->ceilling_clr);
 }

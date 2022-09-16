@@ -51,16 +51,61 @@ int	ft_get_identifier(t_element *elem, char *line)
 	return (-1);
 }
 
+static int	ft_open_texture(char *texture)
+{
+	int	fd;
+
+	if (texture == NULL)
+		return (0);
+	fd = open(texture, O_RDONLY);
+	if (fd < 0)
+		return (0);
+	close(fd);
+	return (1);
+}
+
+static int	ft_validate_color(char *color)
+{
+	char	**split;
+	int		i;
+	int		j;
+
+	if (color == NULL || ft_strlen(color) == 0)
+		return (0);
+	split = ft_split(color, ',');
+	if (!split)
+		return (0);
+	if (ft_splitlen(split) != 3)
+		return (ft_free_split(split));
+	i = -1;
+	while (split[++i])
+	{
+		j = 0;
+		while (split[i][j])
+		{
+			if (!ft_isdigit(split[i][j++]))
+				return (ft_free_split(split));
+		}
+		if (ft_atoll(split[i]) < 0 || ft_atoll(split[i]) > 255)
+			return (ft_free_split(split));
+	}
+	ft_free_split(split);
+	return (1);
+}
+
 int	ft_check_identifiers(t_element *elem)
 {
-	if (elem->north_txtr == NULL || \
-		elem->south_txtr == NULL || \
-		elem->east_txtr == NULL || \
-		elem->west_txtr == NULL || \
-		elem->floor_clr == NULL || \
-		elem->ceilling_clr == NULL)
-	{
+	if (!ft_open_texture(elem->north_txtr))
 		return (0);
-	}
+	if (!ft_open_texture(elem->south_txtr))
+		return (0);
+	if (!ft_open_texture(elem->east_txtr))
+		return (0);
+	if (!ft_open_texture(elem->west_txtr))
+		return (0);
+	if (!ft_validate_color(elem->floor_clr))
+		return (0);
+	if (!ft_validate_color(elem->ceilling_clr))
+		return (0);
 	return (1);
 }

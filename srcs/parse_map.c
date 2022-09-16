@@ -10,9 +10,12 @@ char	**ft_map_cpy(int height, char **map)
 	map_tmp = (char **)malloc(sizeof(char *) * (height + 1));
 	if (map_tmp == NULL)
 		return (NULL);
-	y = -1;
-	while (map[++y])
+	y = 0;
+	while (map[y])
+	{
 		map_tmp[y] = ft_strdup(map[y]);
+		y++;
+	}
 	map_tmp[y] = NULL;
 	return (map_tmp);
 }
@@ -65,7 +68,8 @@ static void	ft_fill_map(t_map *map, int map_fd, char *line)
 		line = get_next_line(map_fd);
 		if (line == NULL)
 			break ;
-		map->game_map[i++] = ft_strdup(line);
+		map->game_map[i] = ft_strdup(line);
+		i++;
 		free(line);
 	}
 	map->game_map[i] = NULL;
