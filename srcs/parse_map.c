@@ -59,9 +59,11 @@ static void	ft_search_map(int fd, char *map_line)
 static void	ft_fill_map(t_map *map, int map_fd, char *line)
 {
 	int		i;
+	size_t	len;
 
 	i = 0;
 	map->game_map[i++] = ft_strdup(line);
+	map->width = (int)ft_strlen_nl(line);
 	ft_memdel(line);
 	while (1)
 	{
@@ -70,6 +72,9 @@ static void	ft_fill_map(t_map *map, int map_fd, char *line)
 			break ;
 		map->game_map[i] = ft_strdup(line);
 		i++;
+		len = (int)ft_strlen_nl(line);
+		if (map->width < (int)len)
+			map->width = len;
 		free(line);
 	}
 	map->game_map[i] = NULL;
@@ -84,16 +89,16 @@ int	ft_parse_map(t_data *data, char *line, int fd, char *file)
 	map->height = ft_get_height(fd) + 1;
 	map->game_map = (char **)malloc(sizeof(char *) * (map->height + 1));
 	if (map->game_map == NULL)
-		ft_free_exit_msg(data, "Error\nMalloc error\n");
+		return (0);
 	map_fd = open(file, O_RDONLY);
 	if (map_fd < 0) 
-		ft_free_exit_msg(data, "Error\nOpening file\n");
+		return (0);
 	ft_search_map(map_fd, line);
 	ft_fill_map(data->map, map_fd, line);
 	if (!ft_check_map(map))
 	{
 		close(map_fd);
-		ft_free_exit_msg(data, "Error\nInvalid map\n");
+		return (0);
 	}
 	close(map_fd);
 	return (1);

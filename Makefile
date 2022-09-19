@@ -5,7 +5,8 @@ OBJS_DIR = objs
 
 SRCS_MF = 	main.c errors.c mlx_init.c utils.c\
 			parsing.c parse_identifiers.c parse_map.c\
-			check_map.c clear.c
+			check_map.c clear.c render.c render_utils.c\
+			render_elements.c
 			
 OBJS_M = $(addprefix $(OBJS_DIR)/, $(patsubst %.c,%.o, $(SRCS_MF)))
 D_FILES_M = $(addprefix $(OBJS_DIR)/, $(patsubst %.c,%.d, $(SRCS_MF)))

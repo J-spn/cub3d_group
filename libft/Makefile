@@ -30,7 +30,7 @@ LIBFT_FILES =  ft_abs.c ft_atoi.c ft_atol.c\
 			ft_lstsize.c ft_lstlast.c ft_lstadd_back.c\
 			ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c\
 			ft_max.c ft_fmax.c ft_free_split.c ft_memdel.c\
-			ft_splitlen.c
+			ft_splitlen.c ft_itoa_base.c
 
 GNL_FILES = get_next_line.c get_next_line_utils.c
 

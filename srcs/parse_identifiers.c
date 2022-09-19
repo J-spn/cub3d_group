@@ -37,17 +37,17 @@ static int	ft_set_identifier(char **texture, const char *id, char *line)
 int	ft_get_identifier(t_element *elem, char *line)
 {
 	if (ft_strnstr(line, "NO", ft_strlen(line)))
-		return(ft_set_identifier(&(elem->north_txtr), "NO", line));
+		return(ft_set_identifier((void *)&(elem->north_txtr), "NO", line));
 	else if (ft_strnstr(line, "SO", ft_strlen(line)))
-		return(ft_set_identifier(&(elem->south_txtr), "SO", line));
+		return(ft_set_identifier((void *)&(elem->south_txtr), "SO", line));
 	else if (ft_strnstr(line, "WE", ft_strlen(line)))
-		return(ft_set_identifier(&(elem->west_txtr), "WE", line));
+		return(ft_set_identifier((void *)&(elem->west_txtr), "WE", line));
 	else if (ft_strnstr(line, "EA", ft_strlen(line)))
-		return(ft_set_identifier(&(elem->east_txtr), "EA", line));
+		return(ft_set_identifier((void *)&(elem->east_txtr), "EA", line));
 	else if (ft_strchr(line, 'F'))
-		return(ft_set_identifier(&(elem->floor_clr), "F", line));
+		return(ft_set_identifier((void *)&(elem->floor_clr), "F", line));
 	else if (ft_strchr(line, 'C'))
-		return(ft_set_identifier(&(elem->ceilling_clr), "C", line));
+		return(ft_set_identifier((void *)&(elem->ceiling_clr), "C", line));
 	return (-1);
 }
 
@@ -105,7 +105,7 @@ int	ft_check_identifiers(t_element *elem)
 		return (0);
 	if (!ft_validate_color(elem->floor_clr))
 		return (0);
-	if (!ft_validate_color(elem->ceilling_clr))
+	if (!ft_validate_color(elem->ceiling_clr))
 		return (0);
 	return (1);
 }

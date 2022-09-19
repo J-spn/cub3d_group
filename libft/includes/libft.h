@@ -6,7 +6,7 @@
 /*   By: mrhyhorn <mrhyhorn@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 18:57:40 by mrhyhorn          #+#    #+#             */
-/*   Updated: 2022/09/15 20:08:42 by mrhyhorn         ###   ########.fr       */
+/*   Updated: 2022/09/16 16:40:48 by mrhyhorn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ char		**ft_split(const char *s, char c);
 size_t		ft_splitlen(char **split);
 int			ft_free_split(char **split_string);
 char		*ft_itoa(int n);
+char		*ft_itoa_base(unsigned long nbr, int base, char l_case);
 char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void		ft_striteri(char *s, void (*f)(unsigned int, char*));
 void		ft_putchar_fd(char c, int fd);

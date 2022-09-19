@@ -20,6 +20,21 @@ void	ft_init_data(t_data *data)
 		ft_exit_error("Error\nMalloc Errror\n");
 }
 
+void	ft_exit_error(char *error)
+{
+	ft_putstr_fd(RED, STDERR_FILENO);
+	ft_putstr_fd(error, STDERR_FILENO);
+	ft_putstr_fd(BREAK, STDERR_FILENO);
+	exit(EXIT_FAILURE);
+}
+
+void	ft_game_msg(char *msg)
+{
+	ft_putstr_fd(YELLOW, STDOUT_FILENO);
+	ft_putstr_fd(msg, STDOUT_FILENO);
+	ft_putstr_fd(BREAK, STDOUT_FILENO);
+}
+
 void	ft_printf_split(char **split)
 {
 	int	i;
