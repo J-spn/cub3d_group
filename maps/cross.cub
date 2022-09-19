@@ -1,11 +1,11 @@
-SO        ./path_to_the_south_texture
+SO        ./textures/purplestone.png
 
-        NO    ./textures/grass_21_256x256.png
+        NO    ./textures/redbrick.png
 
-       WE       ./path_to_the_west_texture
+       WE       ./textures/greystone.png
 
 
-EA        ./path_to_the_east_texture
+EA        ./textures/colorstone.png
 
 F 220,100,0
 
