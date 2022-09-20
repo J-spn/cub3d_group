@@ -52,27 +52,6 @@ unsigned int	ft_convert_color(char *rgb)
 	return (num);
 }
 
-// void	ft_color_to_image(t_data *data, int x, int y, int *w, int *h, unsigned int color)
-// {
-// 	data->mlx_img = mlx_new_image(data->mlx, *w, *h);
-// 	data->addr = mlx_get_data_addr(data->mlx_img, &data->bpp, \
-// 						&data->line_bytes, &data->endian);
-// 	*h = y;
-// 	while (*h < y + ASSET_SIZE)
-// 	{
-// 		*w = x;
-// 		while (*w < x + ASSET_SIZE)
-// 		{
-// 			ft_mlx_pixel_put(data, *w, *h, color);
-// 			(*w)++;
-// 		}
-// 		(*h)++;
-// 	}
-// 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->mlx_img, \
-// 								x * ASSET_SIZE, y * ASSET_SIZE);
-// 	mlx_destroy_image(data->mlx, data->mlx_img);
-// }
-
 void	ft_mlx_image(t_data *data)
 {
 	(void)data;

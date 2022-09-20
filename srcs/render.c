@@ -74,9 +74,9 @@ void	ft_color_to_image_test(t_data *data, int x, int y, unsigned int color)
 	data->mlx_img = mlx_new_image(data->mlx, ASSET_SIZE, ASSET_SIZE);
 	data->addr = mlx_get_data_addr(data->mlx_img, &data->bpp, \
 						&data->line_bytes, &data->endian);
-	printf("data->endian: %d\n", data->endian);
-	printf("data->line_bytes: %d\n", data->line_bytes);
-	printf("data->bbp: %d\n", data->bpp);
+	// printf("data->endian: %d\n", data->endian);
+	// printf("data->line_bytes: %d\n", data->line_bytes);
+	// printf("data->bbp: %d\n", data->bpp);
 	h = y;
 	while (h < y + ASSET_SIZE)
 	{
@@ -101,7 +101,7 @@ void	ft_draw_floor(t_data *data, char **map)
 	y = 0;
 	while (y < data->map->height)
 	{
-		printf("%s", map[y]);
+		// printf("%s", map[y]);
 		x = 0;
 		while (x < (int)ft_strlen_nl(map[y]))
 		{

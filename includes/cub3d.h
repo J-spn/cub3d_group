@@ -91,6 +91,10 @@ void			ft_parse_file(t_data *data, char *file);
 int				ft_get_identifier(t_element *elem, char *line);
 int				ft_check_identifiers(t_element *elem);
 
+/*parse_colors.c*/
+int				ft_set_color(char ***texture, const char *id, char *line);
+int				ft_validate_color(char *color);
+
 /*parse_map.c*/
 int				ft_parse_map(t_data *data, char *line, int fd, char *file);
 char			**ft_map_cpy(int height, char **map);
@@ -103,7 +107,7 @@ int				ft_render(t_data *data);
 
 /*render_utils.c*/
 void			ft_mlx_pixel_put(t_data *data, int x, int y, int color);
-void			ft_color_to_image(t_data *data, int x, int y, int *w, int *h, unsigned int color);
+void			ft_color_to_image(t_data *data, int x, int y, unsigned int color);
 
 /*render_elements.c*/
 unsigned int	ft_convert_color(char *rgb);

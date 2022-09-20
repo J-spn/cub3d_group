@@ -63,10 +63,10 @@ void	ft_parse_file(t_data *data, char *file)
 		ft_free_exit_msg(data, "Error\nInvalid map\n");
 	}
 	close(fd);
-	// printf("NO: %s\n", (char *)data->elems->north_txtr);
-	// printf("SO: %s\n", (char *)data->elems->south_txtr);
-	// printf("WE: %s\n", (char *)data->elems->west_txtr);
-	// printf("EA: %s\n", (char *)data->elems->east_txtr);
-	// printf("F: %s\n", (char *)data->elems->floor_clr);
-	// printf("C: %s\n", (char *)data->elems->ceiling_clr);
+	// printf("%s\n", (char *)data->elems->north_txtr);
+	// printf("%s\n", (char *)data->elems->south_txtr);
+	// printf("%s\n", (char *)data->elems->west_txtr);
+	// printf("%s\n", (char *)data->elems->east_txtr);
+	// printf("%s\n", (char *)data->elems->floor_clr);
+	// printf("%s\n", (char *)data->elems->ceiling_clr);
 }
