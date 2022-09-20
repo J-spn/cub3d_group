@@ -43,5 +43,5 @@ void	ft_printf_split(char **split)
 	if (split == NULL || *split == NULL)
 		return ;
 	while (split[++i])
-		printf("%s", split[i]);
+		printf("%s\n", split[i]);
 }
