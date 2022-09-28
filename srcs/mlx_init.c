@@ -25,11 +25,11 @@ int	ft_key(int key, t_data *data)
 
 void	ft_mlx(t_data *data)
 {
-	int size_x;
-	int size_y;
+	// int size_x;
+	// int size_y;
 
-	size_x = data->map->width * WALL_SIZE;
-	size_y = data->map->height * WALL_SIZE;
+	// size_x = data->map->width * WALL_SIZE;
+	// size_y = data->map->height * WALL_SIZE;
 	data->mlx = mlx_init();
 	if (data->mlx == (void *)0)
 		ft_exit_error("Error\nmlx_init failed\n");
