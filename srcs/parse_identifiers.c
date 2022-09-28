@@ -2,15 +2,6 @@
 
 #include "cub3d.h"
 
-/*
-* NO
-* SO
-* WE
-* EA
-* F
-* C
-*/
-
 static int	ft_set_identifier(char **texture, const char *id, char *line)
 {
 	char	*trim;

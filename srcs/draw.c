@@ -1,0 +1,33 @@
+
+
+#include "cub3d.h"
+
+void	ft_set_dir_plane(t_data *data, t_values *vals)
+{
+	data->move.dir_x = vals->x1;
+	data->move.dir_y = vals->y1;
+	data->move.plane_x = vals->x2;
+	data->move.plane_y = vals->y2;
+}
+
+void	ft_set_initial_pos(t_data *data)
+{
+	data->move.pos_x = (double)(data->map->player_x + 0.5);
+	data->move.pos_y = (double)(data->map->player_y + 0.5);
+	if (data->map->player_dir == 'N')
+		ft_set_dir_plane(data, &((t_values){0.0, -1, 0.6, 0.0}));
+	if (data->map->player_dir == 'E')
+		ft_set_dir_plane(data, &((t_values){1, 0.0, 0.0, 0.6}));
+	if (data->map->player_dir == 'S')
+		ft_set_dir_plane(data, &((t_values){0.0, 1, -0.6, 0.0}));
+	if (data->map->player_dir == 'W')
+		ft_set_dir_plane(data, &((t_values){-1, 0.0, 0.0, -0.6}));
+}
+
+void	ft_draw(t_data *data)
+{
+	data->map->floor = ft_convert_color(data->elems->floor_clr);
+	data->map->ceiling = ft_convert_color(data->elems->ceiling_clr);
+	ft_set_initial_pos(data);
+	ft_mlx(data);
+}
