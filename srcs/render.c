@@ -21,7 +21,7 @@ void	ft_draw_loop(t_data *data)
 
 int	ft_render(t_data *data)
 {
-	mlx_clear_window(data->mlx, data->mlx_win);
+	// mlx_clear_window(data->mlx, data->mlx_win);
 	data->mlx_img = mlx_new_image(data->mlx, WIN_WIDTH, WIN_HEIGHT);
 	data->addr = mlx_get_data_addr(data->mlx_img, &data->bpp, \
 									&data->size_line, &data->endian);

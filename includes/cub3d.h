@@ -35,17 +35,14 @@
 # define EA				3
 
 /*KEYS*/
-# define ESC	53
+# define ESC	53//6537 linux
 # define Q		12
-# define W		13
-# define A		0
-# define S		1
-# define D		2
-# define LEFT	123
-# define RIGHT	124
-# define DOWN	125
-# define UP		126
-# define SPACE	49
+# define W		13//119
+# define A		0//97
+# define S		1//115
+# define D		2//100
+# define LEFT	123//65361
+# define RIGHT	124//65363
 
 /*COLORS*/
 # define RED	"\033[0;31m"

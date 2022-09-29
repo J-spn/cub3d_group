@@ -1,11 +1,11 @@
-SO        ./textures/purplestone.png
+SO        ./textures/blue_light.xpm
 
-        NO    ./textures/redbrick.png
+        NO    ./textures/grass.xpm
 
-       WE       ./textures/greystone.png
+       WE       ./textures/tile.xpm
 
 
-EA        ./textures/colorstone.png
+EA        ./textures/wood.xpm
 
 F 220,100,0
 

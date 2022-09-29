@@ -37,7 +37,7 @@ void	ft_mlx(t_data *data)
 	if (data->mlx_win == (void *)0)
 		ft_exit_error("Error\nmlx_window failed\n");
 	mlx_loop_hook(data->mlx, &ft_render, data);
-	mlx_hook(data->mlx_win, 2, 0, &ft_key, data);
+	mlx_hook(data->mlx_win, 2, 1L << 0, &ft_key, data);
 	mlx_hook(data->mlx_win, 17, 0, &ft_free_exit, data);
 	mlx_loop(data->mlx);
 }
