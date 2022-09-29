@@ -22,12 +22,13 @@ ifeq ($(detected_OS), Darwin)
 	INCLUDES = -I./includes/ -I ./mlx -I libft/includes/
 	MLX = -Lmlx -lmlx -framework OpenGL -framework AppKit
 	MLX_FOLDER = ./mlx
+	ADD_DEF=
 else
 	INCLUDES = -I./includes/  -I ./mlx_linux -I./libft/includes/
 	MLX = -Lmlx_linux -lmlx_Linux -lm -lz -lX11 -lXext
 	MLX_FOLDER = ./mlx_linux
+	ADD_DEF = -DESC=6537 -DW=119 -DS=115 -DA=97 -DD=100 -DLEFT=65361 -DRIGHT=65363
 endif
-
 LIBFT = ./libft/libft.a
 LIB_INC = -L./libft/ -lft
 
@@ -59,7 +60,7 @@ $(NAME) : $(OBJS_M) $(LIBFT)
 	@echo "$(BLUE)$(NAME)$(GREEN) --> DONE!$(BREAK)"
 
 $(OBJS_DIR)/%.o : $(SRCS_DIR)/%.c | $(OBJS_DIR)
-	$(CC) $(CFLAGS) $(OPFLAGS) $(INCLUDES) -c $< -o $@ -MD
+	$(CC) $(CFLAGS) $(OPFLAGS) $(INCLUDES) $(ADD_DEF) -c $< -o $@ -MD
 
 clean :
 	make -C libft/ $@

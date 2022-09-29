@@ -35,7 +35,7 @@ void	ft_mlx(t_data *data)
 		ft_free_exit_msg(data, "Error\nFailed to open image\n");
 	mlx_loop_hook(data->mlx, &ft_render, data);
 	mlx_hook(data->mlx_win, 2, 1L << 0, &ft_key_down, data);
-	mlx_hook(data->mlx_win, 3, 1L << 0, &ft_key_up, data);
+	mlx_hook(data->mlx_win, 3, 1L << 1, &ft_key_up, data);
 	mlx_hook(data->mlx_win, 17, 0, &ft_free_exit, data);
 	mlx_loop(data->mlx);
 }

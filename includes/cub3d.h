@@ -34,18 +34,29 @@
 # define SO				2
 # define EA				3
 
-/*KEYS*/
+/*KEYS: for Linux the -D flag in Makefile is enabled*/
+/*ESC=6537 W=119 A=97 S=115 D=100 LEFT=65361 RIGHT=65363*/
+# ifndef ESC
 # define ESC	53
-# define Q		12
+# endif
+# ifndef W
 # define W		13
+# endif
+# ifndef A
 # define A		0
+# endif
+# ifndef S
 # define S		1
+# endif
+# ifndef D
 # define D		2
+# endif
+# ifndef LEFT
 # define LEFT	123
+# endif
+# ifndef RIGHT
 # define RIGHT	124
-# define DOWN	125
-# define UP		126
-# define SPACE	49
+# endif
 
 /*COLORS*/
 # define RED	"\033[0;31m"
