@@ -1,18 +1,20 @@
-SO        ./path_to_the_south_texture
+SO        ./textures/grass.xpm
 
-        NO    ./textures/grass_21_256x256.png
+        NO    ./textures/wood.xpm
 
-       WE       ./path_to_the_west_texture
+       WE       ./textures/blue_light.xpm
 
-EA        ./path_to_the_east_texture
-
-F 220,100,0
+EA        ./textures/tile.xpm
 
 
-C 225,30,0
+       F     255 , 255 , 255
+
+
+C 2 , 47 , 56
 
 111111
-100101
-101001
-100N01
+100001
+1E0101
+100001
+100001
 111111

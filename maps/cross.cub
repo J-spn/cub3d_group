@@ -1,11 +1,10 @@
-SO        ./path_to_the_south_texture
+SO        ./textures/grass_21_256x256.png
 
         NO    ./textures/grass_21_256x256.png
 
-       WE       ./path_to_the_west_texture
+       WE       ./textures/tile_24_256x256.png
 
-
-EA        ./path_to_the_east_texture
+EA        ./textures/tile_24_256x256.png
 
 F 220,100,0
 
