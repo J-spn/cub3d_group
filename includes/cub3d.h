@@ -32,17 +32,30 @@
 # define NO				0
 # define WE				1
 # define SO				2
-# define EA				3
-
-/*KEYS*/
-# define ESC	53//6537 linux
-# define Q		12
-# define W		13//119
-# define A		0//97
-# define S		1//115
-# define D		2//100
-# define LEFT	123//65361
-# define RIGHT	124//65363
+# define EA
+/*KEYS: for Linux the -D flag in Makefile is enabled*/
+/*ESC=6537 W=119 A=97 S=115 D=100 LEFT=65361 RIGHT=65363*/
+# ifndef ESC
+# define ESC	53
+# endif
+# ifndef W
+# define W		13
+# endif
+# ifndef A
+# define A		0
+# endif
+# ifndef S
+# define S		1
+# endif
+# ifndef D
+# define D		2
+# endif
+# ifndef LEFT
+# define LEFT	123
+# endif
+# ifndef RIGHT
+# define RIGHT	124
+# endif
 
 /*COLORS*/
 # define RED	"\033[0;31m"
