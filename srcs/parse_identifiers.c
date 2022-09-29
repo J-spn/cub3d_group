@@ -2,15 +2,6 @@
 
 #include "cub3d.h"
 
-/*
-* NO
-* SO
-* WE
-* EA
-* F
-* C
-*/
-
 static int	ft_set_identifier(char **texture, const char *id, char *line)
 {
 	char	*trim;
@@ -19,10 +10,12 @@ static int	ft_set_identifier(char **texture, const char *id, char *line)
 	trim = ft_strtrim(line, " ");
 	if (!trim)
 		return (0);
+	if (ft_strcmp(id, "F") == 0 || ft_strcmp(id, "C") == 0)
+		return (ft_set_color(&texture, id, trim));
 	split = ft_split(trim, ' ');
 	if (ft_splitlen(split) != 2 || ft_strcmp(split[0], id) != 0)
 	{
-		free(trim);
+		ft_memdel(trim);
 		ft_free_split(split);
 		return (0);
 	}
@@ -44,9 +37,9 @@ int	ft_get_identifier(t_element *elem, char *line)
 		return(ft_set_identifier((void *)&(elem->west_txtr), "WE", line));
 	else if (ft_strnstr(line, "EA", ft_strlen(line)))
 		return(ft_set_identifier((void *)&(elem->east_txtr), "EA", line));
-	else if (ft_strchr(line, 'F'))
+	else if (ft_strnstr(line, "F", ft_strlen(line)))
 		return(ft_set_identifier((void *)&(elem->floor_clr), "F", line));
-	else if (ft_strchr(line, 'C'))
+	else if (ft_strnstr(line, "C", ft_strlen(line)))
 		return(ft_set_identifier((void *)&(elem->ceiling_clr), "C", line));
 	return (-1);
 }
@@ -61,35 +54,6 @@ static int	ft_open_texture(char *texture)
 	if (fd < 0)
 		return (0);
 	close(fd);
-	return (1);
-}
-
-static int	ft_validate_color(char *color)
-{
-	char	**split;
-	int		i;
-	int		j;
-
-	if (color == NULL || ft_strlen(color) == 0)
-		return (0);
-	split = ft_split(color, ',');
-	if (!split)
-		return (0);
-	if (ft_splitlen(split) != 3)
-		return (ft_free_split(split));
-	i = -1;
-	while (split[++i])
-	{
-		j = 0;
-		while (split[i][j])
-		{
-			if (!ft_isdigit(split[i][j++]))
-				return (ft_free_split(split));
-		}
-		if (ft_atoll(split[i]) < 0 || ft_atoll(split[i]) > 255)
-			return (ft_free_split(split));
-	}
-	ft_free_split(split);
 	return (1);
 }
 

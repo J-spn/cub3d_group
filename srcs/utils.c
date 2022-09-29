@@ -18,6 +18,8 @@ void	ft_init_data(t_data *data)
 	data->map = ft_calloc(1, sizeof(t_map));
 	if (!data->elems || !data->map)
 		ft_exit_error("Error\nMalloc Errror\n");
+	ft_bzero(&data->move, sizeof(t_move));
+	ft_bzero(&data->vals, sizeof(t_values));
 }
 
 void	ft_exit_error(char *error)
@@ -43,5 +45,5 @@ void	ft_printf_split(char **split)
 	if (split == NULL || *split == NULL)
 		return ;
 	while (split[++i])
-		printf("%s", split[i]);
+		printf("%s\n", split[i]);
 }

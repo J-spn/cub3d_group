@@ -14,8 +14,9 @@ void	ft_free_all(t_data *data)
 {
 	if (data->mlx != (void *)0)
 		mlx_destroy_window(data->mlx, data->mlx_win);
+	// if (data->mlx_img != (void *)0)
+	// 	mlx_destroy_image(data->mlx, data->mlx_img);
 	ft_free_elems(data);
-	// ft_destroy_images(data);
 	ft_memdel(data->elems);
 	ft_free_split(data->map->game_map);
 	ft_memdel(data->map);
@@ -24,7 +25,7 @@ void	ft_free_all(t_data *data)
 int	ft_free_exit_msg(t_data *data, char *error)
 {
 	ft_free_all(data);
-	// getchar();
+	getchar();
 	if (error != NULL)
 		ft_exit_error(error);
 	exit(EXIT_SUCCESS);
@@ -33,5 +34,6 @@ int	ft_free_exit_msg(t_data *data, char *error)
 int	ft_free_exit(t_data *data)
 {
 	ft_free_all(data);
+	// getchar();
 	exit(EXIT_SUCCESS);
 }

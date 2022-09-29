@@ -5,7 +5,8 @@ static void	ft_set_player_pos(t_map *map, int x, int y, int *p)
 {
 	map->player_x = x;
 	map->player_y = y;
-	map->player_start_dir = map->game_map[y][x];
+	map->player_dir = map->game_map[y][x];
+	map->game_map[y][x] = '0';
 	*p += 1;
 }
 
