@@ -1,13 +1,4 @@
-<<<<<<< HEAD:maps/cross.cub
-SO        ./textures/purplestone.png
 
-        NO    ./textures/redbrick.png
-
-       WE       ./textures/greystone.png
-
-
-EA        ./textures/colorstone.png
-=======
 SO        ./textures/blue_light.xpm
 
         NO    ./textures/grass.xpm
@@ -16,7 +7,6 @@ SO        ./textures/blue_light.xpm
 
 
 EA        ./textures/wood.xpm
->>>>>>> Dasha:maps/cross_new.cub
 
 F 220,100,0
 
