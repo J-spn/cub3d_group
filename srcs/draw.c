@@ -2,7 +2,7 @@
 
 #include "cub3d.h"
 
-void	ft_set_dir_plane(t_data *data, t_values *vals)
+static void	ft_set_dir_plane(t_data *data, t_values *vals)
 {
 	data->move.dir_x = vals->x1;
 	data->move.dir_y = vals->y1;
@@ -10,7 +10,7 @@ void	ft_set_dir_plane(t_data *data, t_values *vals)
 	data->move.plane_y = vals->y2;
 }
 
-void	ft_set_initial_pos(t_data *data)
+static void	ft_set_initial_pos(t_data *data)
 {
 	data->move.pos_x = (double)(data->map->player_x + 0.5);
 	data->move.pos_y = (double)(data->map->player_y + 0.5);
@@ -24,7 +24,7 @@ void	ft_set_initial_pos(t_data *data)
 		ft_set_dir_plane(data, &((t_values){-1, 0.0, 0.0, -0.6}));
 }
 
-void	ft_draw(t_data *data)
+void	ft_start_draw(t_data *data)
 {
 	data->map->floor = ft_convert_color(data->elems->floor_clr);
 	data->map->ceiling = ft_convert_color(data->elems->ceiling_clr);

@@ -23,24 +23,44 @@ void	ft_draw_bg_ceiling(t_data *data)
 	}
 }
 
-void	ft_draw_ray(t_data *data, int x)
+/*calculate value where the wall was hit*/
+static int	ft_get_texture_pos_x(t_move *mv)
 {
-	t_move	*mv;
-	int		clr;
-	// int	y;
+	double	wall_x;
+	int		txtr_x;
 
-	// y = data->move.draw_start;
-	// while (y < data->move.draw_end)
-	// {
-	// 	if (data->move.side == 1)
-	// 		ft_mlx_pixel_put(data, x, y, PURPLE_INT / 2);
-	// 	else
-	// 		ft_mlx_pixel_put(data, x, y, PURPLE_INT);
-	// 	y++;
-	// }
-	mv = &data->move;
-	clr = PURPLE_INT;
-	if (data->move.side == 1)
-		clr = GREY_INT;
-	ft_draw_line(data, &(t_values){x, mv->draw_start, x, mv->draw_end}, clr);
+	wall_x = 0.0;
+	if (mv->side == 0)
+		wall_x = mv->pos_y + mv->perp_wall_dist * mv->ray_dir_y;
+	else
+		wall_x = mv->pos_x + mv->perp_wall_dist * mv->ray_dir_x;
+	wall_x -= floor(wall_x);
+	txtr_x = (int)(wall_x * (double)WALL_SIZE);
+	if (mv->side == 0 && mv->ray_dir_x > 0)
+		txtr_x = WALL_SIZE - txtr_x - 1;
+	if (mv->side == 1 && mv->ray_dir_y < 0 )
+		txtr_x = WALL_SIZE - txtr_x - 1;
+	return (txtr_x);
+}
+
+void	ft_draw_ray(t_data *data, t_move *mv, int x)
+{
+	double	step;
+	int		y;
+	int		txtr_y;
+	int		txtr_x;
+	double	tex_pos;
+	int		clr;
+
+	txtr_x = ft_get_texture_pos_x(mv);
+	step = 1.0 * WALL_SIZE / mv->line_h;
+	tex_pos = (mv->draw_start - WIN_HEIGHT / 2 + mv->line_h / 2) * step;
+	y = mv->draw_start - 1;
+	while (++y < mv->draw_end)
+	{
+		txtr_y = (int)tex_pos & (WALL_SIZE - 1);
+		tex_pos += step;
+		clr = data->map->txtr_arr[mv->texture_num][WALL_SIZE * txtr_y + txtr_x];
+		ft_mlx_pixel_put(data, x, y, clr);
+	}
 }

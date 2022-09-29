@@ -15,19 +15,19 @@
 # define GAME_NAME		"|--cub3D--|"
 # define WIN_WIDTH		900
 # define WIN_HEIGHT		610
-# define HALF_WIDTH		WIN_WIDTH / 2
-# define HALF_HEIGHT	WIN_HEIGHT / 2
 
 # define PI	3.1415926535
 # define PI2 PI / 2
 # define PI3 3 * PI / 2
 # define DR	0.0174533
 
+#define MAXSAMPLES	60
+
 # define WALL_SIZE		64
 # define PLAYER_SIZE	32
 # define FOV			60
-# define MOVE_SPEED		0.3
-# define ROT_ANG		10 * PI / 180
+# define MOVE_SPEED		2.0
+# define ROT_ANG		30 * PI / 180
 
 # define NO				0
 # define WE				1
@@ -64,6 +64,20 @@ typedef struct s_values
 	double	y2;
 }			t_values;
 
+typedef struct	s_keys
+{
+	int esc;
+	int q;
+	int w;
+	int a;
+	int s;
+	int d;
+	int left;
+	int right;
+	int down;
+	int up;
+}		t_keys;
+
 typedef struct s_move {
 	double	pos_x;
 	double	pos_y;
@@ -73,8 +87,11 @@ typedef struct s_move {
 	double	ray_dir_y;
 	double	plane_x;
 	double	plane_y;
-	double	time;
-	double	old_time;
+	double	ticksum;
+	int		tick_index;
+	int		ticks[MAXSAMPLES];
+	double	move_speed;
+	double	rot_ang;
 	double	camera_x;
 	double	camera_y;
 	double	intersect_dist_x; // first intersection with vertical line
@@ -91,7 +108,21 @@ typedef struct s_move {
 	int		line_h;
 	int		draw_start;
 	int		draw_end;
-} t_move;
+	int		texture_num;
+	// double	wall_x;
+	int		tex_pos_x;
+}			t_move;
+
+typedef	struct s_texture
+{
+	void	*img;
+	int		w;
+	int		h;
+	int		bpp;
+	int		endian;
+	int		size_line;
+	int		*addr;
+}			t_texture;
 
 typedef struct s_element {
 	void	*north_txtr;
@@ -104,6 +135,7 @@ typedef struct s_element {
 
 typedef struct s_map {
 	char			**game_map;
+	int				txtr_arr[4][WALL_SIZE * WALL_SIZE];
 	int				height;
 	int				width;
 	int				player_x;
@@ -123,15 +155,17 @@ typedef struct s_data {
 	int			endian;
 	char		*addr;
 	t_values	vals;
+	t_keys		keys;
 	t_move		move;
 	t_element	*elems;
 	t_map		*map;
+	t_texture	*txtrs;
 }				t_data;
 
 /*errors.c*/
 // void	ft_exit_error(char *error);
 
-/*mlx_init.c*/
+/*mlx.c*/
 void			ft_mlx(t_data *data);
 
 /*utils.c*/
@@ -180,15 +214,21 @@ void			ft_draw_line(t_data *data, t_values *vals, int color);
 /*raycasting_utils.c*/
 
 /*keys.c*/
+int				ft_key_down(int key_code, t_data *data);
+int				ft_key_up(int key_code, t_data *data);
+int				ft_key_hooks(t_data *data);
 
 /*draw.c*/
 int				ft_key(int key, t_data *data);
-void			ft_draw(t_data *data);
+void			ft_start_draw(t_data *data);
 void			ft_draw_floor_ceiling(t_data *data);
 
 /*draw_elements.c*/
 void			ft_draw_bg_ceiling(t_data *data);
-void			ft_draw_ray(t_data *data, int x);
+void			ft_draw_ray(t_data *data, t_move *mv, int x);
+
+/*textures.c*/
+int				ft_set_textures(t_data *data, t_texture *t);
 
 /*move.c*/
 void			ft_move_up(t_data *data, t_move *mv);

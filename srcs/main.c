@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
 	ft_bzero(&data, sizeof(t_data));
 	ft_init_data(&data);
 	ft_parse_file(&data, argv[1]);
-	ft_draw(&data);
+	ft_start_draw(&data);
 	ft_free_exit(&data);
 	return (0);
 }
