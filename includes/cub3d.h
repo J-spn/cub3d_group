@@ -32,7 +32,7 @@
 # define NO				0
 # define WE				1
 # define SO				2
-# define EA
+# define EA				3
 /*KEYS: for Linux the -D flag in Makefile is enabled*/
 /*ESC=6537 W=119 A=97 S=115 D=100 LEFT=65361 RIGHT=65363*/
 # ifndef ESC
