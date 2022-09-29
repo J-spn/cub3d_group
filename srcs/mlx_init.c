@@ -3,7 +3,7 @@
 
 int	ft_key(int key, t_data *data)
 {
-	if (key == ESC || key == Q)
+	if (key == ESC)
 	{
 		ft_game_msg("Quit\n");
 		ft_free_exit(data);
