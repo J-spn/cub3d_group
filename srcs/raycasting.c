@@ -84,11 +84,23 @@ void	ft_dda(t_move *mv, char **map)
 void	ft_calc_wall_dist_and_ray_height(t_move *mv)
 {
 	if (mv->side == 0)
+	{
 		mv->perp_wall_dist = mv->intersect_dist_x - mv->delta_x;
+		if (mv->ray_dir_x > 0)
+			mv->texture_num = EA;
+		else
+			mv->texture_num = WE;
+	}
 	else
+	{
 		mv->perp_wall_dist = mv->intersect_dist_y - mv->delta_y;
+		if (mv->ray_dir_y > 0)
+			mv->texture_num = NO;
+		else
+			mv->texture_num = SO;
+	}
 	mv->line_h = (int)(WIN_HEIGHT / mv->perp_wall_dist);
-	mv->draw_start = mv->line_h * (-1) / 2 + WIN_HEIGHT / 2;
+	mv->draw_start = (-1) * mv->line_h / 2 + WIN_HEIGHT / 2;
 	if (mv->draw_start < 0)
 		mv->draw_start = 0;
 	mv->draw_end = mv->line_h / 2 + WIN_HEIGHT / 2;

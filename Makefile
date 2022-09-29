@@ -3,13 +3,13 @@ NAME = cub3D
 SRCS_DIR = srcs
 OBJS_DIR = objs
 
-SRCS_MF = 	main.c errors.c mlx_init.c utils.c\
+SRCS_MF = 	main.c errors.c mlx.c utils.c\
 			parsing.c parse_identifiers.c parse_colors.c\
 			parse_map.c check_map.c\
 			clear.c\
 			render.c render_utils.c\
 			raycasting.c\
-			draw_elements.c\
+			draw_elements.c textures.c\
 			draw.c keys.c\
 			move.c rotate.c
 
@@ -29,7 +29,6 @@ else
 	MLX_FOLDER = ./mlx_linux
 	ADD_DEF = -DESC=6537 -DW=119 -DS=115 -DA=97 -DD=100 -DLEFT=65361 -DRIGHT=65363
 endif
-
 LIBFT = ./libft/libft.a
 LIB_INC = -L./libft/ -lft
 

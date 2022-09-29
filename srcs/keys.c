@@ -2,33 +2,71 @@
 
 #include "cub3d.h"
 
-// int	ft_key(int key, t_data *data)
-// {
-// 	if (key == ESC || key == Q)
-// 	{
-// 		ft_game_msg("Quit\n");
-// 		ft_free_exit(data);
-// 	}
-// 	else if (key == W || key == UP)
-// 	{
-// 		if (data->move.pos_y > 0)
-// 			data->map->player_y -= 1;
-// 	}
-// 	else if (key == S || key == DOWN)
-// 	{
-// 		if (data->move.pos_y < WIN_HEIGHT - WALL_SIZE)
-// 			data->map->player_y += 1;
-// 	}
-// 	else if (key == A || key == LEFT)
-// 	{
-// 		// if (data->move.pos_x > 0)
-// 		// 	data->map->player_x -= 0.1;
-// 		pa -= 0.1;
-// 	}
-// 	else if (key == D || key == RIGHT)
-// 	{
-// 		if (data->move.pos_x < WIN_WIDTH - WALL_SIZE)
-// 			data->map->player_x += 1;
-// 	}
-// 	return (1);
-// }
+int	ft_key_down(int	key_code, t_data *data)
+{
+	t_keys	*key;
+
+	key = &data->keys;
+	if (key_code == ESC)
+		key->esc = 1;
+	if (key_code == W)
+		key->w = 1;
+	if (key_code == D)
+		key->d = 1;
+	if (key_code == S)
+		key->s = 1;
+	if (key_code == A)
+		key->a = 1;
+	if (key_code == LEFT)
+		key->left = 1;
+	if (key_code == RIGHT)
+		key->right = 1;
+	return (1);
+}
+
+int	ft_key_up(int key_code, t_data *data)
+{
+	t_keys	*key;
+
+	key = &data->keys;
+	if (key_code == ESC)
+		key->esc = 0;
+	if (key_code == W)
+		key->w = 0;
+	if (key_code == D)
+		key->d = 0;
+	if (key_code == S)
+		key->s = 0;
+	if (key_code == A)
+		key->a = 0;
+	if (key_code == LEFT)
+		key->left = 0;
+	if (key_code == RIGHT)
+		key->right = 0;
+	return (1);
+}
+
+int	ft_key_hooks(t_data *data)
+{
+	t_keys	*key;
+
+	key = &data->keys;
+	if (key->esc == 1)
+	{
+		ft_game_msg("Quit\n");
+		ft_free_exit(data);
+	}
+	if (key->w == 1)
+		ft_move_up(data, &data->move);
+	if (key->d == 1)
+		ft_move_right(data, &data->move);
+	if (key->s == 1)
+		ft_move_down(data, &data->move);
+	if (key->a == 1)
+		ft_move_left(data, &data->move);
+	if (key->left == 1)
+		ft_rotate_left(data, &data->move);
+	if (key->right == 1)
+		ft_rotate_right(data, &data->move);
+	return (1);
+}

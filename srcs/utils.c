@@ -16,10 +16,12 @@ void	ft_init_data(t_data *data)
 {
 	data->elems = ft_calloc(1, sizeof(t_element));
 	data->map = ft_calloc(1, sizeof(t_map));
-	if (!data->elems || !data->map)
+	data->txtrs = ft_calloc(4, sizeof(t_texture));
+	if (!data->elems || !data->map || !data->txtrs)
 		ft_exit_error("Error\nMalloc Errror\n");
 	ft_bzero(&data->move, sizeof(t_move));
 	ft_bzero(&data->vals, sizeof(t_values));
+	ft_bzero(&data->keys, sizeof(t_keys));
 }
 
 void	ft_exit_error(char *error)
