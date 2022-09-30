@@ -4,13 +4,11 @@
 #include "libft.h"
 #include "mlx.h"
 #include <unistd.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
 #include <unistd.h>
 #include <math.h>
-
-//delete
-#include <stdio.h>
 
 # define GAME_NAME		"|--cub3D--|"
 # define WIN_WIDTH		900
@@ -20,8 +18,6 @@
 # define PI2 PI / 2
 # define PI3 3 * PI / 2
 # define DR	0.0174533
-
-#define MAXSAMPLES	60
 
 # define WALL_SIZE		64
 # define PLAYER_SIZE	32
@@ -58,11 +54,15 @@
 # define RIGHT	124
 # endif
 
+# define PLUS	24
+# define MIN	27
+
 /*COLORS*/
 # define RED	"\033[0;31m"
 # define YELLOW	"\033[0;33m"
 # define BREAK	"\033[0m"
 
+# define BLUE_INT	1048575
 # define PURPLE_INT	3093151
 # define YELLOW_INT	15580928
 # define GREY_INT	8295071
@@ -98,11 +98,10 @@ typedef struct s_move {
 	double	ray_dir_y;
 	double	plane_x;
 	double	plane_y;
-	double	ticksum;
-	int		tick_index;
-	int		ticks[MAXSAMPLES];
+	double	move_speed_val;
+	double	rot_speed_val;
 	double	move_speed;
-	double	rot_ang;
+	double	rot_speed;
 	double	camera_x;
 	double	camera_y;
 	double	intersect_dist_x; // first intersection with vertical line
@@ -120,7 +119,6 @@ typedef struct s_move {
 	int		draw_start;
 	int		draw_end;
 	int		texture_num;
-	// double	wall_x;
 	int		tex_pos_x;
 }			t_move;
 
@@ -152,6 +150,7 @@ typedef struct s_map {
 	int				player_x;
 	int				player_y;
 	int				player_dir;
+	int				min;
 	unsigned int	floor;
 	unsigned int	ceiling;
 }					t_map;
@@ -172,9 +171,6 @@ typedef struct s_data {
 	t_map		*map;
 	t_texture	*txtrs;
 }				t_data;
-
-/*errors.c*/
-// void	ft_exit_error(char *error);
 
 /*mlx.c*/
 void			ft_mlx(t_data *data);
@@ -200,6 +196,7 @@ void			ft_parse_file(t_data *data, char *file);
 /*parse_identifiers.c*/
 int				ft_get_identifier(t_element *elem, char *line);
 int				ft_check_identifiers(t_element *elem);
+int				ft_count_identifiers(t_data *data, char *file);
 
 /*parse_colors.c*/
 int				ft_set_color(char ***texture, const char *id, char *line);
@@ -219,7 +216,6 @@ void			ft_mlx_loop(t_data *data);
 
 /*render_utils.c*/
 void			ft_mlx_pixel_put(t_data *data, int x, int y, int color);
-// void			ft_color_to_image(t_data *data, int x, int y, unsigned int color); //?
 void			ft_draw_line(t_data *data, t_values *vals, int color);
 
 /*raycasting_utils.c*/
@@ -257,5 +253,9 @@ void			ft_calc_intersection_dist(t_move *mv);
 void			ft_calc_step_first_intersect(t_move *mv);
 void			ft_dda(t_move *mv, char **map);
 void			ft_calc_wall_dist_and_ray_height(t_move *mv);
+
+/*minimap.c*/
+void			ft_draw_minimap(t_data *data);
+void			ft_minimap_init(t_data *data);
 
 #endif

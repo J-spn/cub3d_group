@@ -12,7 +12,7 @@ void	ft_rotate_right(t_data *data, t_move *mv)
 	double	rot_ang;
 
 	(void)data;
-	rot_ang = mv->rot_ang;
+	rot_ang = mv->rot_speed;
 	dir_x_tmp = mv->dir_x;
 	dir_y_tmp = mv->dir_y;
 	mv->dir_x = dir_x_tmp * cos(rot_ang) - dir_y_tmp * sin(rot_ang);
@@ -32,7 +32,7 @@ void	ft_rotate_left(t_data *data, t_move *mv)
 	double	rot_ang;
 
 	(void)data;
-	rot_ang = mv->rot_ang;
+	rot_ang = mv->rot_speed;
 	dir_x_tmp = mv->dir_x;
 	dir_y_tmp = mv->dir_y;
 	mv->dir_x = dir_x_tmp * cos(-rot_ang) - dir_y_tmp * sin(-rot_ang);
