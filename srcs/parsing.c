@@ -14,7 +14,7 @@ int	ft_check_ext(char *file)
 	return (0);
 }
 
-static char	*ft_get_info(t_data *data, int fd)
+static char	*ft_get_info(t_data *data, int fd, int *count_ids)
 {
 	char	*line;
 	int		res;
@@ -35,6 +35,8 @@ static char	*ft_get_info(t_data *data, int fd)
 				free(line);
 				return (NULL);
 			}
+			else
+				*count_ids += 1;
 		}
 		free(line);
 	}
@@ -45,14 +47,16 @@ void	ft_parse_file(t_data *data, char *file)
 {
 	int			fd;
 	char		*line;
+	int			count_ids;
 
 	if (!ft_check_ext(file))
 		ft_exit_error("Error\nInvalid map extension\n");
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		ft_exit_error("Error\nOpening file\n");
-	line = ft_get_info(data, fd);
-	if (line == NULL || !ft_check_identifiers(data->elems))
+	count_ids = 0;
+	line = ft_get_info(data, fd, &count_ids);
+	if (line == NULL || !ft_check_identifiers(data->elems) || count_ids != 6)
 	{
 		close(fd);
 		ft_free_exit_msg(data, "Error\nInvalid identifiers\n");
@@ -63,10 +67,4 @@ void	ft_parse_file(t_data *data, char *file)
 		ft_free_exit_msg(data, "Error\nInvalid map\n");
 	}
 	close(fd);
-	// printf("%s\n", (char *)data->elems->north_txtr);
-	// printf("%s\n", (char *)data->elems->south_txtr);
-	// printf("%s\n", (char *)data->elems->west_txtr);
-	// printf("%s\n", (char *)data->elems->east_txtr);
-	// printf("%s\n", (char *)data->elems->floor_clr);
-	// printf("%s\n", (char *)data->elems->ceiling_clr);
 }

@@ -1,10 +1,10 @@
 SO        ./textures/blue_light.xpm
 
-        NO    ./textures/wood.xpm
+        NO    ./textures/concrete.xpm
 
-       WE       ./textures/blue_light.xpm
+       WE       ./textures/tech_0G.xpm
 
-EA        ./textures/tile.xpm
+EA        ./textures/win_blue_light.xpm
 
 F 34,22,90
 

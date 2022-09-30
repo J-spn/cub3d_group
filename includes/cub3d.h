@@ -196,7 +196,6 @@ void			ft_parse_file(t_data *data, char *file);
 /*parse_identifiers.c*/
 int				ft_get_identifier(t_element *elem, char *line);
 int				ft_check_identifiers(t_element *elem);
-int				ft_count_identifiers(t_data *data, char *file);
 
 /*parse_colors.c*/
 int				ft_set_color(char ***texture, const char *id, char *line);
