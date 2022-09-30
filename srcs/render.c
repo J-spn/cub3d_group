@@ -31,18 +31,18 @@ static void	ft_draw_loop(t_data *data)
 
 int	ft_render(t_data *data)
 {
-	static int	tick;
-	int			old_tick;
+	static long long	tick;
+	int					old_tick;
 
 	data->mlx_img = mlx_new_image(data->mlx, WIN_WIDTH, WIN_HEIGHT);
 	data->addr = mlx_get_data_addr(data->mlx_img, &data->bpp, \
 									&data->size_line, &data->endian);
-	old_tick = (int)ft_ticks_per_frame(&data->move, tick);
-	data->move.move_speed = (double)((tick - old_tick) / 1000.0 * MOVE_SPEED);
-	data->move.rot_ang = (double)((tick - old_tick) / 1000.0 * ROT_ANG);
 	ft_draw_bg_ceiling(data);
 	ft_draw_loop(data);
 	ft_key_hooks(data);
+	old_tick = (int)ft_ticks_per_frame(&data->move, tick);
+	data->move.move_speed = (double)((tick - old_tick) / 1000.0 * MOVE_SPEED);
+	data->move.rot_ang = (double)((tick - old_tick) / 1000.0 * ROT_ANG);
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->mlx_img, 0, 0);
 	mlx_destroy_image(data->mlx, data->mlx_img);
 	tick += 2;
