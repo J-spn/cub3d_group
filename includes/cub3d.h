@@ -31,7 +31,7 @@
 # define EA				3
 
 /*KEYS: for Linux the -D flag in Makefile is enabled*/
-/*ESC=6537 W=119 A=97 S=115 D=100 LEFT=65361 RIGHT=65363*/
+/*ESC=6537 W=119 A=97 S=115 D=100 LEFT=65361 RIGHT=65363 PLUS=65451 MIN=65453*/
 # ifndef ESC
 # define ESC	53
 # endif
@@ -53,9 +53,12 @@
 # ifndef RIGHT
 # define RIGHT	124
 # endif
-
+# ifndef PLUS
 # define PLUS	24
+# endif
+# ifndef MIN
 # define MIN	27
+# endif
 
 /*COLORS*/
 # define RED	"\033[0;31m"
