@@ -28,7 +28,7 @@ else
 	INCLUDES = -I./includes/  -I ./mlx_linux -I./libft/includes/
 	MLX = -Lmlx_linux -lmlx_Linux -lm -lz -lX11 -lXext
 	MLX_FOLDER = ./mlx_linux
-	ADD_DEF = -DESC=6537 -DW=119 -DS=115 -DA=97 -DD=100 -DLEFT=65361 -DRIGHT=65363
+	ADD_DEF = -DESC=6537 -DW=119 -DS=115 -DA=97 -DD=100 -DLEFT=65361 -DRIGHT=65363 -DPLUS=65451 -DMIN=65453
 endif
 LIBFT = ./libft/libft.a
 LIB_INC = -L./libft/ -lft
