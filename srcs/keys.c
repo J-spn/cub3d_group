@@ -21,6 +21,10 @@ int	ft_key_down(int	key_code, t_data *data)
 		key->left = 1;
 	if (key_code == RIGHT)
 		key->right = 1;
+	if (key_code == PLUS)
+		data->move.move_speed_val += 0.5;
+	if (key_code == MIN)
+		data->move.move_speed_val -= 0.5;
 	return (1);
 }
 

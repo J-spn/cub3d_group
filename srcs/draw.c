@@ -22,6 +22,7 @@ static void	ft_set_initial_pos(t_data *data)
 		ft_set_dir_plane(data, &((t_values){0.0, 1, -0.6, 0.0}));
 	if (data->map->player_dir == 'W')
 		ft_set_dir_plane(data, &((t_values){-1, 0.0, 0.0, -0.6}));
+	data->move.move_speed_val = 2.0;
 }
 
 void	ft_start_draw(t_data *data)
@@ -29,5 +30,6 @@ void	ft_start_draw(t_data *data)
 	data->map->floor = ft_convert_color(data->elems->floor_clr);
 	data->map->ceiling = ft_convert_color(data->elems->ceiling_clr);
 	ft_set_initial_pos(data);
+	ft_minimap_init(data);
 	ft_mlx(data);
 }

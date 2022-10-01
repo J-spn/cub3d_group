@@ -1,28 +1,6 @@
 
 #include "cub3d.h"
 
-int	ft_key(int key, t_data *data)
-{
-	if (key == ESC)
-	{
-		ft_game_msg("Quit\n");
-		ft_free_exit(data);
-	}
-	else if (key == W)
-		ft_move_up(data, &data->move);
-	else if (key == S)
-		ft_move_down(data, &data->move);
-	else if (key == A)
-		ft_move_left(data, &data->move);
-	else if (key == D)
-		ft_move_right(data, &data->move);
-	else if (key == LEFT)
-		ft_rotate_left(data, &data->move);
-	else if (key == RIGHT)
-		ft_rotate_right(data, &data->move);
-	return (1);
-}
-
 void	ft_mlx(t_data *data)
 {
 	data->mlx = mlx_init();
