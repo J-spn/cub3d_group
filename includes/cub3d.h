@@ -53,12 +53,9 @@
 # ifndef RIGHT
 # define RIGHT	124
 # endif
-# ifndef PLUS
+
 # define PLUS	24
-# endif
-# ifndef MIN
 # define MIN	27
-# endif
 
 /*COLORS*/
 # define RED	"\033[0;31m"
