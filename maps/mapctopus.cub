@@ -1,10 +1,10 @@
-EA     ./textures/tech_0G.xpm
+SO        ./textures/green_light.xpm
 
-SO        ./textures/concrete.xpm
-
-        NO    ./textures/win_blue_light.xpm
+        NO    ./textures/tech_0E.xpm
 
        WE       ./textures/blue_light.xpm
+
+EA        ./textures/yellow_light.xpm
 
        F     255 , 255 , 255
 

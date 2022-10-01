@@ -11,8 +11,7 @@ SRCS_MF = 	main.c errors.c mlx.c utils.c\
 			raycasting.c\
 			draw_elements.c textures.c\
 			draw.c keys.c\
-			move.c rotate.c\
-			minimap.c
+			move.c rotate.c
 
 OBJS_M = $(addprefix $(OBJS_DIR)/, $(patsubst %.c,%.o, $(SRCS_MF)))
 D_FILES_M = $(addprefix $(OBJS_DIR)/, $(patsubst %.c,%.d, $(SRCS_MF)))

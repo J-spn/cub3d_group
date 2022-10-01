@@ -1,8 +1,13 @@
 #include "cub3d.h"
 
-double	ft_deg_to_rad(int ang)
+static double	ft_ticks_per_frame(t_move *mv, int newtick)
 {
-	return (ang * PI / 180);
+	mv->ticksum -= mv->ticks[mv->tick_index];
+	mv->ticksum += newtick;
+	mv->ticks[mv->tick_index] = newtick;
+	if (++mv->tick_index == MAXSAMPLES)
+		mv->tick_index = 0;
+	return (mv->ticksum / MAXSAMPLES);
 }
 
 static void	ft_draw_loop(t_data *data)
@@ -25,19 +30,24 @@ static void	ft_draw_loop(t_data *data)
 
 int	ft_render(t_data *data)
 {
+	static int	tick;
+	int			old_tick;
+
 	data->mlx_img = mlx_new_image(data->mlx, WIN_WIDTH, WIN_HEIGHT);
 	data->addr = mlx_get_data_addr(data->mlx_img, &data->bpp, \
 									&data->size_line, &data->endian);
+	old_tick = (int)ft_ticks_per_frame(&data->move, tick);
+	data->move.move_speed = (double)((tick - old_tick) / 1000.0 * MOVE_SPEED);
+	data->move.rot_ang = (double)((tick - old_tick) / 1000.0 * ROT_ANG);
 	ft_draw_bg_ceiling(data);
 	ft_draw_loop(data);
 	ft_key_hooks(data);
-	ft_draw_minimap(data);
-	if (data->move.move_speed_val < 2.0 || data->move.move_speed_val > 6.0)
-		data->move.move_speed_val = 2.0;
-	data->move.move_speed = (double)(60 / 1000.0 * data->move.move_speed_val);
-	data->move.rot_speed_val = ft_deg_to_rad(30);
-	data->move.rot_speed = (double)(60 / 1000.0 * data->move.rot_speed_val);
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->mlx_img, 0, 0);
 	mlx_destroy_image(data->mlx, data->mlx_img);
+	tick += 2;
 	return (1);
 }
+
+//Algorithm
+
+// each square of a map has width 1

@@ -22,8 +22,6 @@ static int	ft_set_identifier(char **texture, const char *id, char *line)
 	ft_memdel(trim);
 	trim = ft_strtrim(split[1], "\n");
 	ft_free_split(split);
-	if (*texture != NULL)
-		return(ft_memdel(trim));
 	*texture = ft_strdup(trim);
 	ft_memdel(trim);
 	return (1);
