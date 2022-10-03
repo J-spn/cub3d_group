@@ -1,4 +1,3 @@
-
 #include "cub3d.h"
 
 static void	ft_set_player_pos(t_map *map, int x, int y, int *p)
@@ -100,7 +99,6 @@ int	ft_check_map(t_map *map)
 		ft_free_split(map_tmp);
 		return (0);
 	}
-	// ft_printf_split(map_tmp);
 	ft_free_split(map_tmp);
 	return (1);
 }

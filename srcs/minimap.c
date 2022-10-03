@@ -1,5 +1,3 @@
-
-
 #include "cub3d.h"
 
 void	ft_minimap_init(t_data *data)
@@ -29,7 +27,7 @@ void	ft_draw_cell(t_data *data, int x, int y, int color)
 	}
 }
 
-void	ft_draw_2Dmap(t_data *data, t_move *mv, t_map *map)
+void	ft_draw_2d_map(t_data *data, t_move *mv, t_map *map)
 {
 	int		x;
 	int		y;
@@ -60,5 +58,5 @@ void	ft_draw_minimap(t_data *data)
 
 	mv = &data->move;
 	map = data->map;
-	ft_draw_2Dmap(data, mv, map);
+	ft_draw_2d_map(data, mv, map);
 }

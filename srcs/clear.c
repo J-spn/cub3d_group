@@ -38,7 +38,6 @@ void	ft_free_all(t_data *data)
 int	ft_free_exit_msg(t_data *data, char *error)
 {
 	ft_free_all(data);
-	// getchar();
 	if (error != NULL)
 		ft_exit_error(error);
 	exit(EXIT_SUCCESS);
@@ -47,6 +46,5 @@ int	ft_free_exit_msg(t_data *data, char *error)
 int	ft_free_exit(t_data *data)
 {
 	ft_free_all(data);
-	// getchar();
 	exit(EXIT_SUCCESS);
 }

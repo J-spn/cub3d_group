@@ -1,5 +1,3 @@
-
-
 #include "cub3d.h"
 
 static void	ft_set_dir_plane(t_data *data, t_values *vals)
