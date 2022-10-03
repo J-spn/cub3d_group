@@ -1,4 +1,3 @@
-
 #include "cub3d.h"
 
 void	ft_mlx(t_data *data)
@@ -16,4 +15,12 @@ void	ft_mlx(t_data *data)
 	mlx_hook(data->mlx_win, 3, 1L << 1, &ft_key_up, data);
 	mlx_hook(data->mlx_win, 17, 0, &ft_free_exit, data);
 	mlx_loop(data->mlx);
+}
+
+void	ft_mlx_pixel_put(t_data *data, int x, int y, int color)
+{
+	char	*pixel;
+
+	pixel = data->addr + (y * data->size_line + x * (data->bpp / 8));
+	*(unsigned int *)pixel = color;
 }

@@ -1,11 +1,9 @@
-
-
 #include "cub3d.h"
 
 void	ft_draw_bg_ceiling(t_data *data)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	y = -1;
 	while (++y < WIN_HEIGHT / 2)
@@ -38,7 +36,7 @@ static int	ft_get_texture_pos_x(t_move *mv)
 	txtr_x = (int)(wall_x * (double)WALL_SIZE);
 	if (mv->side == 0 && mv->ray_dir_x > 0)
 		txtr_x = WALL_SIZE - txtr_x - 1;
-	if (mv->side == 1 && mv->ray_dir_y < 0 )
+	if (mv->side == 1 && mv->ray_dir_y < 0)
 		txtr_x = WALL_SIZE - txtr_x - 1;
 	return (txtr_x);
 }
@@ -50,7 +48,6 @@ void	ft_draw_ray(t_data *data, t_move *mv, int x)
 	int		txtr_y;
 	int		txtr_x;
 	double	tex_pos;
-	int		clr;
 
 	txtr_x = ft_get_texture_pos_x(mv);
 	step = 1.0 * WALL_SIZE / mv->line_h;
@@ -60,7 +57,7 @@ void	ft_draw_ray(t_data *data, t_move *mv, int x)
 	{
 		txtr_y = (int)tex_pos & (WALL_SIZE - 1);
 		tex_pos += step;
-		clr = data->map->txtr_arr[mv->texture_num][WALL_SIZE * txtr_y + txtr_x];
-		ft_mlx_pixel_put(data, x, y, clr);
+		ft_mlx_pixel_put(data, x, y, \
+		data->map->txtr_arr[mv->texture_num][WALL_SIZE * txtr_y + txtr_x]);
 	}
 }

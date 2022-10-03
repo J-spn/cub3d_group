@@ -1,8 +1,6 @@
-
-
 #include "cub3d.h"
 
-int	ft_key_down(int	key_code, t_data *data)
+int	ft_key_down(int key_code, t_data *data)
 {
 	t_keys	*key;
 
