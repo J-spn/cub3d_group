@@ -4,6 +4,7 @@ libft/libft.a
 libft/srcs/*/*.o
 libft/srcs/*/*.d
 mlx/libmlx.a
+mlx/*.o
 objs/
 cub3d
 a.out
