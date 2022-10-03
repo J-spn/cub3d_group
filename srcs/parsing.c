@@ -6,7 +6,7 @@ int	ft_check_ext(char *file)
 {
 	char	*dot;
 
-	dot = ft_strchr(file, '.');
+	dot = ft_strrchr(file, '.');
 	if (dot == NULL)
 		return (0);
 	if (ft_strcmp(dot, ".cub") == 0)
