@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mrhyhorn <mrhyhorn@student.21-school.ru    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/03 15:22:20 by mrhyhorn          #+#    #+#             */
+/*   Updated: 2022/10/03 15:25:57 by mrhyhorn         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static void	ft_set_dir_plane(t_data *data, t_values *vals)
@@ -20,7 +32,7 @@ static void	ft_set_initial_pos(t_data *data)
 		ft_set_dir_plane(data, &((t_values){0.0, 1, -0.6, 0.0}));
 	if (data->map->player_dir == 'W')
 		ft_set_dir_plane(data, &((t_values){-1, 0.0, 0.0, -0.6}));
-	data->move.move_speed_val = 2.0;
+	data->move.move_speed_val = 1.5;
 }
 
 void	ft_start_draw(t_data *data)

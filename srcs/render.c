@@ -6,7 +6,7 @@
 /*   By: mrhyhorn <mrhyhorn@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 14:54:51 by mrhyhorn          #+#    #+#             */
-/*   Updated: 2022/10/03 14:54:52 by mrhyhorn         ###   ########.fr       */
+/*   Updated: 2022/10/03 15:25:48 by mrhyhorn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ int	ft_render(t_data *data)
 	ft_draw_loop(data);
 	ft_key_hooks(data);
 	ft_draw_minimap(data);
-	if (data->move.move_speed_val < 2.0 || data->move.move_speed_val > 6.0)
-		data->move.move_speed_val = 2.0;
+	if (data->move.move_speed_val < 1.5 || data->move.move_speed_val > 6.0)
+		data->move.move_speed_val = 1.5;
 	data->move.move_speed = (double)(60 / 1000.0 * data->move.move_speed_val);
 	data->move.rot_speed_val = ft_deg_to_rad(30);
 	data->move.rot_speed = (double)(60 / 1000.0 * data->move.rot_speed_val);
