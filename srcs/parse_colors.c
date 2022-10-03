@@ -1,4 +1,14 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_colors.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mrhyhorn <mrhyhorn@student.21-school.ru    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/03 14:52:17 by mrhyhorn          #+#    #+#             */
+/*   Updated: 2022/10/03 14:52:38 by mrhyhorn         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "cub3d.h"
 
@@ -13,7 +23,7 @@ int	ft_validate_color(char *color)
 	split = ft_split(color, ',');
 	if (!split)
 		return (0);
-	if (ft_splitlen(split) != 3) 
+	if (ft_splitlen(split) != 3)
 		return (ft_free_split(split));
 	i = -1;
 	while (split[++i])

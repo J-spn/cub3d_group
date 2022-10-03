@@ -3,11 +3,11 @@ NAME = cub3D
 SRCS_DIR = srcs
 OBJS_DIR = objs
 
-SRCS_MF = 	main.c errors.c mlx.c utils.c\
+SRCS_MF = 	main.c utils.c\
 			parsing.c parse_identifiers.c parse_colors.c\
 			parse_map.c check_map.c\
 			clear.c\
-			render.c render_utils.c\
+			mlx.c render.c\
 			raycasting.c\
 			draw_elements.c textures.c\
 			draw.c keys.c\
@@ -23,13 +23,14 @@ ifeq ($(detected_OS), Darwin)
 	INCLUDES = -I./includes/ -I ./mlx -I libft/includes/
 	MLX = -Lmlx -lmlx -framework OpenGL -framework AppKit
 	MLX_FOLDER = ./mlx
-	ADD_DEF=
+	ADD_DEF = -D DARWIN_KEYS
 else
 	INCLUDES = -I./includes/  -I ./mlx_linux -I./libft/includes/
 	MLX = -Lmlx_linux -lmlx_Linux -lm -lz -lX11 -lXext
 	MLX_FOLDER = ./mlx_linux
-	ADD_DEF = -DESC=6537 -DW=119 -DS=115 -DA=97 -DD=100 -DLEFT=65361 -DRIGHT=65363 -DPLUS=65451 -DMIN=65453
+	ADD_DEF = -D LINUX_KEYS -DESC=6537 -DW=119 -DS=115 -DA=97 -DD=100 -DLEFT=65361 -DRIGHT=65363 -DPLUS=65451 -DMIN=65453
 endif
+
 LIBFT = ./libft/libft.a
 LIB_INC = -L./libft/ -lft
 

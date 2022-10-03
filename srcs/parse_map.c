@@ -1,4 +1,14 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mrhyhorn <mrhyhorn@student.21-school.ru    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/03 14:53:41 by mrhyhorn          #+#    #+#             */
+/*   Updated: 2022/10/03 14:53:50 by mrhyhorn         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "cub3d.h"
 
@@ -91,7 +101,7 @@ int	ft_parse_map(t_data *data, char *line, int fd, char *file)
 	if (map->game_map == NULL)
 		return (0);
 	map_fd = open(file, O_RDONLY);
-	if (map_fd < 0) 
+	if (map_fd < 0)
 		return (0);
 	ft_search_map(map_fd, line);
 	ft_fill_map(data->map, map_fd, line);

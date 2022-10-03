@@ -1,4 +1,14 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_identifiers.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mrhyhorn <mrhyhorn@student.21-school.ru    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/03 14:52:53 by mrhyhorn          #+#    #+#             */
+/*   Updated: 2022/10/03 14:53:19 by mrhyhorn         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "cub3d.h"
 
@@ -23,7 +33,7 @@ static int	ft_set_identifier(char **texture, const char *id, char *line)
 	trim = ft_strtrim(split[1], "\n");
 	ft_free_split(split);
 	if (*texture != NULL)
-		return(ft_memdel(trim));
+		return (ft_memdel(trim));
 	*texture = ft_strdup(trim);
 	ft_memdel(trim);
 	return (1);
@@ -32,17 +42,17 @@ static int	ft_set_identifier(char **texture, const char *id, char *line)
 int	ft_get_identifier(t_element *elem, char *line)
 {
 	if (ft_strnstr(line, "NO", ft_strlen(line)))
-		return(ft_set_identifier((void *)&(elem->north_txtr), "NO", line));
+		return (ft_set_identifier((void *)&(elem->north_txtr), "NO", line));
 	else if (ft_strnstr(line, "SO", ft_strlen(line)))
-		return(ft_set_identifier((void *)&(elem->south_txtr), "SO", line));
+		return (ft_set_identifier((void *)&(elem->south_txtr), "SO", line));
 	else if (ft_strnstr(line, "WE", ft_strlen(line)))
-		return(ft_set_identifier((void *)&(elem->west_txtr), "WE", line));
+		return (ft_set_identifier((void *)&(elem->west_txtr), "WE", line));
 	else if (ft_strnstr(line, "EA", ft_strlen(line)))
-		return(ft_set_identifier((void *)&(elem->east_txtr), "EA", line));
+		return (ft_set_identifier((void *)&(elem->east_txtr), "EA", line));
 	else if (ft_strnstr(line, "F", ft_strlen(line)))
-		return(ft_set_identifier((void *)&(elem->floor_clr), "F", line));
+		return (ft_set_identifier((void *)&(elem->floor_clr), "F", line));
 	else if (ft_strnstr(line, "C", ft_strlen(line)))
-		return(ft_set_identifier((void *)&(elem->ceiling_clr), "C", line));
+		return (ft_set_identifier((void *)&(elem->ceiling_clr), "C", line));
 	return (-1);
 }
 

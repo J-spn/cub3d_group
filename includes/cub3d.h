@@ -1,63 +1,64 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mrhyhorn <mrhyhorn@student.21-school.ru    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/03 14:05:27 by mrhyhorn          #+#    #+#             */
+/*   Updated: 2022/10/03 15:09:52 by mrhyhorn         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
-#include "libft.h"
-#include "mlx.h"
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <math.h>
+# include "libft.h"
+# include "mlx.h"
+# include <unistd.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <fcntl.h>
+# include <unistd.h>
+# include <math.h>
 
 # define GAME_NAME		"|--cub3D--|"
 # define WIN_WIDTH		900
 # define WIN_HEIGHT		610
 
 # define PI	3.1415926535
-# define PI2 PI / 2
-# define PI3 3 * PI / 2
-# define DR	0.0174533
-
 # define WALL_SIZE		64
 # define PLAYER_SIZE	32
 # define FOV			60
 # define MOVE_SPEED		2.0
-# define ROT_ANG		30 * PI / 180
 
 # define NO				0
 # define WE				1
 # define SO				2
 # define EA				3
 
-/*KEYS: for Linux the -D flag in Makefile is enabled*/
-/*ESC=6537 W=119 A=97 S=115 D=100 LEFT=65361 RIGHT=65363 PLUS=65451 MIN=65453*/
-# ifndef ESC
-# define ESC	53
+/*KEYS*/
+# ifdef LINUX_KEYS
+#  define ESC	6537
+#  define W		119
+#  define A		97
+#  define S		115
+#  define D		100
+#  define LEFT	65361
+#  define RIGHT	65363
+#  define PLUS	65451
+#  define MIN	65453
 # endif
-# ifndef W
-# define W		13
-# endif
-# ifndef A
-# define A		0
-# endif
-# ifndef S
-# define S		1
-# endif
-# ifndef D
-# define D		2
-# endif
-# ifndef LEFT
-# define LEFT	123
-# endif
-# ifndef RIGHT
-# define RIGHT	124
-# endif
-# ifndef PLUS
-# define PLUS	24
-# endif
-# ifndef MIN
-# define MIN	27
+# ifdef DARWIN_KEYS
+#  define ESC	53
+#  define W		13
+#  define A		0
+#  define S		1
+#  define D		2
+#  define LEFT	123
+#  define RIGHT	124
+#  define PLUS	24
+#  define MIN	27
 # endif
 
 /*COLORS*/
@@ -78,25 +79,25 @@ typedef struct s_values
 	double	y2;
 }			t_values;
 
-typedef struct	s_keys
+typedef struct s_keys
 {
-	int esc;
-	int q;
-	int w;
-	int a;
-	int s;
-	int d;
-	int left;
-	int right;
-	int down;
-	int up;
+	int	esc;
+	int	q;
+	int	w;
+	int	a;
+	int	s;
+	int	d;
+	int	left;
+	int	right;
+	int	down;
+	int	up;
 }		t_keys;
 
 typedef struct s_move {
 	double	pos_x;
 	double	pos_y;
-	double	dir_x; //initial direction vector
-	double	dir_y; //initial direction vector
+	double	dir_x;
+	double	dir_y;
 	double	ray_dir_x;
 	double	ray_dir_y;
 	double	plane_x;
@@ -107,14 +108,14 @@ typedef struct s_move {
 	double	rot_speed;
 	double	camera_x;
 	double	camera_y;
-	double	intersect_dist_x; // first intersection with vertical line
-	double	intersect_dist_y; // first intersection with horizontal line
-	int		map_x; //current square with ray
-	int		map_y; //current square with ray
-	double	delta_x; // distance from first intersection with x-line to next x-side
-	double	delta_y; // distance from first intersection with y-line to next y-side
-	int		step_x; // what direction to step in x or y-direction (either +1 or -1)
-	int		step_y; // what direction to step in x or y-direction (either +1 or -1)
+	double	intersect_dist_x;
+	double	intersect_dist_y;
+	int		map_x;
+	int		map_y;
+	double	delta_x;
+	double	delta_y;
+	int		step_x;
+	int		step_y;
 	double	perp_wall_dist;
 	int		is_wall;
 	int		side;
@@ -125,7 +126,7 @@ typedef struct s_move {
 	int		tex_pos_x;
 }			t_move;
 
-typedef	struct s_texture
+typedef struct s_texture
 {
 	void	*img;
 	int		w;
@@ -163,8 +164,7 @@ typedef struct s_data {
 	void		*mlx_win;
 	void		*mlx;
 	int			bpp;
-	int			size_line;	//amount of bytes taken by one row of our image
-							//(image_height * image_width * 4) / height
+	int			size_line;
 	int			endian;
 	char		*addr;
 	t_values	vals;
@@ -176,6 +176,7 @@ typedef struct s_data {
 }				t_data;
 
 /*mlx.c*/
+void			ft_mlx_pixel_put(t_data *data, int x, int y, int color);
 void			ft_mlx(t_data *data);
 
 /*utils.c*/
@@ -216,12 +217,6 @@ int				ft_check_map(t_map *map);
 int				ft_render(t_data *data);
 void			ft_mlx_loop(t_data *data);
 
-/*render_utils.c*/
-void			ft_mlx_pixel_put(t_data *data, int x, int y, int color);
-void			ft_draw_line(t_data *data, t_values *vals, int color);
-
-/*raycasting_utils.c*/
-
 /*keys.c*/
 int				ft_key_down(int key_code, t_data *data);
 int				ft_key_up(int key_code, t_data *data);
@@ -249,7 +244,7 @@ void			ft_move_left(t_data *data, t_move *mv);
 void			ft_rotate_left(t_data *data, t_move *mv);
 void			ft_rotate_right(t_data *data, t_move *mv);
 
-/*dda.c*/
+/*raycasting.c*/
 void			ft_calc_ray_pos_dir(t_move *mv, int x);
 void			ft_calc_intersection_dist(t_move *mv);
 void			ft_calc_step_first_intersect(t_move *mv);
