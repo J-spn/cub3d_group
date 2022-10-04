@@ -6,7 +6,7 @@
 /*   By: mrhyhorn <mrhyhorn@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 14:54:15 by mrhyhorn          #+#    #+#             */
-/*   Updated: 2022/10/03 14:54:16 by mrhyhorn         ###   ########.fr       */
+/*   Updated: 2022/10/04 12:39:01 by mrhyhorn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,9 +105,9 @@ void	ft_calc_wall_dist_and_ray_height(t_move *mv)
 	{
 		mv->perp_wall_dist = mv->intersect_dist_y - mv->delta_y;
 		if (mv->ray_dir_y > 0)
-			mv->texture_num = NO;
-		else
 			mv->texture_num = SO;
+		else
+			mv->texture_num = NO;
 	}
 	mv->line_h = (int)(WIN_HEIGHT / mv->perp_wall_dist);
 	mv->draw_start = (-1) * mv->line_h / 2 + WIN_HEIGHT / 2;

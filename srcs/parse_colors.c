@@ -6,7 +6,7 @@
 /*   By: mrhyhorn <mrhyhorn@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 14:52:17 by mrhyhorn          #+#    #+#             */
-/*   Updated: 2022/10/03 14:52:38 by mrhyhorn         ###   ########.fr       */
+/*   Updated: 2022/10/03 16:45:59 by mrhyhorn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ int	ft_set_color(char ***texture, const char *id, char *line)
 		return (ft_memdel(line));
 	trim = ft_strtrim(line, id);
 	ft_memdel(line);
+	if (**texture != NULL)
+		return (ft_memdel(trim));
 	(**texture) = ft_strtrim(trim, "\n");
 	ft_memdel(trim);
 	return (1);
