@@ -1,5 +1,6 @@
+//not this time
 
-#include "cub3d.h"
+//#include "cub3d.h"
 
 // void	ft_exit_error(char *error)
 // {
